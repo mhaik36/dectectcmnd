@@ -54,7 +54,7 @@ class UploadImage extends Component {
             }
         };
         //https://mhaik36server2.herokuapp.com/upload
-        axios.post("http://localhost:4000/upload", formData, config)
+        axios.post("http://localhost:4000/upload", formData, config)  //http://localhost:4000/upload
             .then((response) => {
                 this.setState({
                     isUpload: true,
@@ -124,7 +124,7 @@ class UploadImage extends Component {
                         {
                             this.state.isUpload ?
                                 <div>
-                                    <img src={this.state.imagePath} alt="Ảnh" height="250" width="250" />
+                                    <img src={'http://localhost:4000/uploads/'+this.state.imagePath} alt="Ảnh" height="250" width="250" />
                                 </div>
                                 :
                                 null
