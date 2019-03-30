@@ -106,9 +106,6 @@ class FullWidthTabs extends React.Component {
               </div>
             )
           )}
-          <Button color="primary" onClick={() => { console.log('onClick'); }}>
-            Json
-          </Button>
           {/* {JSON.stringify(this.props.labelResult.json)} */}
           <h3 class="label-span">JSON</h3>
           <TextField
