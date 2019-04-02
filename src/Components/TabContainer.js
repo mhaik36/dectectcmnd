@@ -83,7 +83,41 @@ class FullWidthTabs extends React.Component {
         </div>
       )
   }
-
+  renderLogo() {
+    const logoResult = this.props.logoResult;
+    if (logoResult !== null)
+      return (
+        <div>
+          {logoResult.logos.map(logo =>
+            (
+              // <div class="label-flex">
+              //   <div class="label-flex-sub"></div>
+              //   <div class="label-flex-sub"></div>
+              // </div>()
+              <div>
+                <div class="label-flex-progress">
+                  <span >{logo.description}</span>
+                  <span>{Math.round(logo.score * 100)}%</span>
+                </div>
+                <LinearProgress variant="determinate" value={Math.round(logo.score * 100)} />
+              </div>
+            )
+          )}
+          {/* {JSON.stringify(this.props.labelResult.json)} */}
+          <h3 class="label-span">JSON</h3>
+          <TextField
+            multiline={true}
+            rows={2}
+            rowsMax={10}
+            // disabled={true}
+            // defaultValue={JSON.stringify(webResult.json)}
+            value={JSON.stringify(logoResult.json)}
+            fullWidth={true}
+          // label="JSON"
+          />
+        </div>
+      )
+  }
   renderWeb() {
     const webResult = this.props.webResult;
     // const webResult = this.props.webResult;
@@ -240,6 +274,7 @@ class FullWidthTabs extends React.Component {
             <Tab label="Document" />
             <Tab label="Face" />
             <Tab label="Label" />
+            <Tab label="Logo" />
             <Tab label="Web" />
           </Tabs>
         </AppBar>
@@ -343,6 +378,11 @@ class FullWidthTabs extends React.Component {
           <TabContainer dir={theme.direction}>
             {
               this.renderLabel()
+            }
+          </TabContainer>
+          <TabContainer dir={theme.direction}>
+            {
+              this.renderLogo()
             }
           </TabContainer>
           <TabContainer dir={theme.direction}>

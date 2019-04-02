@@ -34,7 +34,8 @@ class UploadImage extends Component {
             webResult: null,
             fullText: null,
             docJson: null,
-            faceJson: null
+            faceJson: null,
+            logoResult: null,
         };
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -68,8 +69,9 @@ class UploadImage extends Component {
                     fullText: response.data.textDetection.fullText,
                     docJson: response.data.textDetection.json,
                     faceJson: response.data.Detectface.json,
+                    logoResult: response.data.logoResult,
                 });
-                console.log('json:' + JSON.stringify(response.data))
+                console.log('json:' + JSON.stringify(response.data.logoResult))
                 // alert("The file is successfully uploaded");
             }).catch((error) => {
             });
@@ -88,7 +90,7 @@ class UploadImage extends Component {
                 <div>
                     <TabContainer docJson={this.state.docJson} fullText={this.state.fullText} document={this.state.text} numberFaces={this.state.numFaces}
                         faceJson={this.state.faceJson} cropFiles={this.state.cropFiles} labelResult={this.state.labelResult}
-                        webResult={this.state.webResult} />
+                        webResult={this.state.webResult} logoResult={this.state.logoResult} />
                 </div>
 
             )
