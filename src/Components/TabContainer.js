@@ -157,8 +157,10 @@ class FullWidthTabs extends React.Component {
   }
   checkCMND() {
     const webResult = this.props.webResult;
+    const logoResult = this.props.logoResult;
     let isIdentityDocument = false;
     let isWebEntityCMND = false;
+    let isVietnamGovernment = false;
     this.props.labelResult.labels.forEach(label => {
       if (label.description.toLowerCase().trim() === 'identity document')
         if (Math.round(label.score) >= 0.5)
@@ -171,7 +173,13 @@ class FullWidthTabs extends React.Component {
           isWebEntityCMND = true;
 
     })
-    this.setState({ isCMND: isIdentityDocument && isWebEntityCMND && this.props.numberFaces === 1 });
+    logoResult.logos.forEach(logo => {
+      if (logo.description.toLowerCase().trim() === 'chứng minh nhân dân')
+        if (Math.round(logo.score) >= 0.5)
+        isVietnamGovernment = true;
+
+    })
+    this.setState({ isCMND: isIdentityDocument && isVietnamGovernment && isWebEntityCMND && this.props.numberFaces === 1 });
   }
   getInfo() {
     // let fullText = this.props.fullText;
